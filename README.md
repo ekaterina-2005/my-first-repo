@@ -8,3 +8,7 @@
 - email: katudus.kfty@gmail.com
 - inst: katudus
 - vk: katudus
+
+<p align="center">
+  <img src="images/thanks.png" alt="thanks" width="500">
+</p>
