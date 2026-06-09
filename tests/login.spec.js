@@ -2,6 +2,7 @@
 const { test, expect } = require("@playwright/test");
 
 // Описываем наш набор тестов
+// Используем getByTestId(), поскольку data-test настроен как testIdAttribute в playwright.config
 test.describe("Авторизация на Sauce Demo", () => {
   // Создаем тест-кейс
   test("Пользователь должен успешно войти в систему", async ({ page }) => {
@@ -9,16 +10,16 @@ test.describe("Авторизация на Sauce Demo", () => {
     await page.goto("https://www.saucedemo.com/");
 
     // 2. Вводим логин
-    // Используем селектор по id
-    await page.locator("#user-name").fill("standard_user");
+    // Используем локатор Playwright
+    await page.getByPlaceholder("Username").fill("standard_user");
 
     // 3. Вводим пароль
-    // Используем селектор по placeholder
-    await page.locator('[placeholder="Password"]').fill("secret_sauce");
+    // Используем локатор Playwright
+    await page.getByPlaceholder("Password").fill("secret_sauce");
 
     // 4. Нажимаем кнопку входа
-    // Используем селектор по data-test атрибуту
-    await page.locator('[data-test="login-button"]').click();
+    // Используем локатор Playwright
+    await page.getByTestId("login-button").click();
 
     // 5. Проверяем, что URL изменился и содержит нужную часть
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
@@ -32,19 +33,20 @@ test.describe("Авторизация на Sauce Demo", () => {
     await page.goto("https://www.saucedemo.com/");
 
     // 2. Вводим логин
-    // Используем селектор по id
-    await page.locator("#user-name").fill("locked_out_user");
+    // Используем локатор Playwright
+    await page.getByPlaceholder("Username").fill("locked_out_user");
 
     // 3. Вводим пароль
-    // Используем селектор по placeholder
-    await page.locator('[placeholder="Password"]').fill("secret_sauce");
+    // Используем локатор Playwright
+    await page.getByPlaceholder("Password").fill("secret_sauce");
 
     // 4. Нажимаем кнопку входа
-    // Используем селектор по data-test атрибуту
-    await page.locator('[data-test="login-button"]').click();
+    // Используем локатор Playwright
+    await page.getByTestId("login-button").click();
 
     // 5. Проверяем, что на странице появилось сообщение об ошибке
-    await expect(page.locator("[data-test='error']")).toHaveText(
+    // Используем локатор Playwright
+    await expect(page.getByTestId("error")).toHaveText(
       "Epic sadface: Sorry, this user has been locked out.",
     );
   });
