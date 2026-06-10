@@ -20,7 +20,8 @@ export class CheckoutStepTwoPage extends BasePage {
   }
 
   async getTotalPrice() {
-    return this.totalPrice.textContent();
+    const totelPriceInfo = await this.totalPrice.textContent();
+    return Number.parseFloat(totelPriceInfo.replace("Total: $", ""));
   }
 
   async getItemNames() {

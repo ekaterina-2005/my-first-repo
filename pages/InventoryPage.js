@@ -27,11 +27,31 @@ export class InventoryPage extends BasePage {
     await this.cartIcon.open();
   }
 
-  async getCartCount(){
+  async getCartCount() {
     return this.cartIcon.getItemCount();
   }
 
   async getPageTitle() {
     return this.pageTitle.textContent();
+  }
+
+  async sortByNameAtoZ() {
+    await this.page.getByTestId("product-sort-container").selectOption("az");
+  }
+
+  async sortByNameZtoA() {
+    await this.page.getByTestId("product-sort-container").selectOption("za");
+  }
+
+  async sortByPriceLowToHigh() {
+    await this.page.getByTestId("product-sort-container").selectOption("lohi");
+  }
+
+  async sortByPriceHighToLow() {
+    await this.page.getByTestId("product-sort-container").selectOption("hilo");
+  }
+
+  async getFirstItemName() {
+    return this.page.getByTestId("inventory-item-name").first().textContent();
   }
 }
