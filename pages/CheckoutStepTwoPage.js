@@ -1,6 +1,8 @@
-export class CheckoutStepTwoPage {
+import { BasePage } from "./BasePage";
+
+export class CheckoutStepTwoPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.orderSummary = page.getByTestId("checkout-summary-container");
     this.cartList = page.getByTestId("cart-list");

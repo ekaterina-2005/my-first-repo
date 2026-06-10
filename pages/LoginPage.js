@@ -1,6 +1,8 @@
-export class LoginPage {
+import { BasePage } from "./BasePage";
+
+export class LoginPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.usernameInput = page.getByTestId("username");
     this.passwordInput = page.getByTestId("password");
@@ -9,7 +11,7 @@ export class LoginPage {
   }
 
   async open() {
-    await this.page.goto("https://www.saucedemo.com");
+    await super.open("https://www.saucedemo.com");
   }
 
   async login(username, password) {

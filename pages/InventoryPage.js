@@ -1,6 +1,8 @@
-export class InventoryPage {
+import { BasePage } from "./BasePage";
+
+export class InventoryPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.pageTitle = page.getByTestId("title");
     this.cartIcon = page.getByTestId("shopping-cart-link");
@@ -16,6 +18,10 @@ export class InventoryPage {
         `//div[@data-test="inventory-item-name" and text()="${itemName}"]/ancestor::div[@data-test="inventory-item"]//button[text()="Add to cart"]`,
       )
       .click();
+  }
+
+  async getAvailableProductCount() {
+    return this.addToCartButtons.count();
   }
 
   async openCart() {

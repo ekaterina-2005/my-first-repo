@@ -1,6 +1,8 @@
-export class CartPage {
+import { BasePage } from "./BasePage";
+
+export class CartPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.cartList = page.getByTestId("cart-list");
     this.checkoutButton = page.getByTestId("checkout");

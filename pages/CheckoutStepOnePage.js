@@ -1,6 +1,8 @@
-export class CheckoutStepOnePage {
+import { BasePage } from "./BasePage";
+
+export class CheckoutStepOnePage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.firstNameInput = page.getByTestId("firstName");
     this.lastNameInput = page.getByTestId("lastName");

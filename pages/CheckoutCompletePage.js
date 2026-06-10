@@ -1,6 +1,8 @@
-export class CheckoutCompletePage {
+import { BasePage } from "./BasePage";
+
+export class CheckoutCompletePage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
 
     this.completionHeader = page.getByTestId("complete-header");
     this.backHomeButton = page.getByTestId("back-to-products");
