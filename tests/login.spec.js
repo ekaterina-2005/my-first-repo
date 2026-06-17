@@ -1,5 +1,5 @@
 // Импортируем 'test' и 'expect' из библиотеки Playwright
-const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/test";
 
 // Создаем универсальную функцию для авторизации
 async function login(page, username, password) {
@@ -15,7 +15,7 @@ async function login(page, username, password) {
 
 // Описываем наш набор тестов
 // Используем getByTestId(), поскольку data-test настроен как testIdAttribute в playwright.config
-test.describe("Авторизация на Sauce Demo", () => {
+test.describe("Авторизация на Sauce Demo @ui", () => {
   // Создаем тест-кейс
   test("Пользователь должен успешно войти в систему", async ({ page }) => {
     await login(page, "standard_user", "secret_sauce");

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("API-тесты для Restful-booker", () => {
+test.describe("API-тесты для Restful-booker @api", () => {
   // Настраиваем последовательное выполнение (beforeAll выполняется 1 раз; тесты не параллельны)
   test.describe.configure({ mode: "serial" });
 
