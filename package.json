@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Привет! Меня зовут Екатерина. Я учусь пользоваться Git и GitHub.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "tests:ui": "npx playwright test --grep @ui",
+    "tests:api": "npx playwright test --grep @api",
+    "tests:all": "npx playwright test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ekaterina-2005/my-first-repo.git"

@@ -7,7 +7,7 @@ import { CheckoutStepTwoPage } from "../pages/CheckoutStepTwoPage";
 import { CheckoutCompletePage } from "../pages/CheckoutCompletePage";
 import { CheckoutDataFactory } from "../data/CheckoutDataFactory";
 
-test("E2E сценарий. Покупка самого дорогого товара", async ({ page }) => {
+test("E2E сценарий. Покупка самого дорогого товара @ui", async ({ page }) => {
   const loginPage = new LoginPage(page);
   const inventoryPage = new InventoryPage(page);
   const cartPage = new CartPage(page);
