@@ -2,6 +2,16 @@ name: Manual Test Run
 
 on:
   workflow_dispatch: # Этот триггер позволяет запускать пайплайн вручную
+    inputs:
+      test_type:
+        description: 'Type of tests to run'
+        type: choice
+        options:
+          - ui
+          - api
+          - all
+        required: true
+        default: 'all'
 
 jobs:
   run-tests:
@@ -23,17 +33,19 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run UI tests
+        if: ${{ github.event.inputs.test_type == 'ui' || github.event.inputs.test_type == 'all' }}
         run: npm run tests:ui -- --reporter=html
         env:
           PLAYWRIGHT_HTML_REPORT: playwright-report-ui
 
       - name: Run API tests
+        if: ${{ github.event.inputs.test_type == 'api' || github.event.inputs.test_type == 'all' }}
         run: npm run tests:api -- --reporter=html
         env:
           PLAYWRIGHT_HTML_REPORT: playwright-report-api
 
       - name: Upload UI test report
-        if: always()
+        if: ${{ always() && (github.event.inputs.test_type == 'ui' || github.event.inputs.test_type == 'all') }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-ui
@@ -41,7 +53,7 @@ jobs:
           retention-days: 7
 
       - name: Upload API test report
-        if: always() 
+        if: ${{ always() && (github.event.inputs.test_type == 'api' || github.event.inputs.test_type == 'all') }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-api
